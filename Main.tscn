@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Bead.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Ring.tscn" type="PackedScene" id=4]
+[ext_resource path="res://hit1.wav" type="AudioStream" id=5]
+[ext_resource path="res://hit2.wav" type="AudioStream" id=6]
+[ext_resource path="res://hit3.wav" type="AudioStream" id=7]
+
+[node name="Main" type="Node2D"]
+
+script = ExtResource( 1 )
+Bead = ExtResource( 2 )
+BEAD_VELOCITY = 200.0
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="Ring" parent="." instance=ExtResource( 4 )]
+
+position = Vector2( 0, 0 )
+_sections_unfolded = [ "Angular", "Transform", "Visibility" ]
+
+[node name="StartTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="WinTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = true
+autostart = false
+
+[node name="IncomingBeadTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.5
+one_shot = false
+autostart = false
+
+[node name="InstructionsTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="Launchers" type="Node" parent="."]
+
+editor/display_folded = true
+
+[node name="TopLeft" type="Position2D" parent="Launchers"]
+
+[node name="TopRight" type="Position2D" parent="Launchers"]
+
+[node name="BottomRight" type="Position2D" parent="Launchers"]
+
+[node name="BottomLeft" type="Position2D" parent="Launchers"]
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="."]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="."]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="."]
+
+stream = ExtResource( 7 )
+volume_db = 0.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[connection signal="remove_instructions" from="Ring" to="." method="_on_Ring_remove_instructions"]
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+
+[connection signal="timeout" from="WinTimer" to="." method="_on_StartTimer_timeout"]
+
+[connection signal="timeout" from="IncomingBeadTimer" to="." method="_on_IncomingBeadTimer_timeout"]
+
+
