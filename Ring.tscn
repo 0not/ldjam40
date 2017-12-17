@@ -28,7 +28,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Angular", "Transform" ]
 Bead = ExtResource( 2 )
 MAX_ANGULAR_VELOCITY = 100.0
-ORIGINAL_MAX_ANGULAR_VELOCITY = 100
+ORIGINAL_MAX_ANGULAR_VELOCITY = 175.0
 NUM_START_BEADS = 24
 MAX_BEADS_ON_RING = 68
 

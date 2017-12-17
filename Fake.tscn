@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Fake.gd" type="Script" id=1]
+[ext_resource path="res://white_bead.png" type="Texture" id=2]
 
 [node name="Fake" type="Area2D"]
 
@@ -20,6 +21,12 @@ process_mode = 1
 wait_time = 0.3
 one_shot = true
 autostart = true
+
+[node name="Sprite" type="Sprite" parent="."]
+
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
 

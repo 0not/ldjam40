@@ -16,13 +16,19 @@ func _ready():
 		shrinking = false
 	
 	FULL_RADIUS = RADIUS
+	
 	if !shrinking:
 		RADIUS = floor(FULL_RADIUS/2) 
+	
+	$Sprite.modulate = COLOR
 
-	update()
+	update_radius()
 
-func _draw():
-	draw_circle(Vector2(0, 0), RADIUS, COLOR)
+func update_radius():
+	scale = Vector2(1, 1) * RADIUS/FULL_RADIUS
+
+#func _draw():
+#	draw_circle(Vector2(0, 0), RADIUS, COLOR)
 
 func _process(delta):
 	var total_time = $AnimationTimer.get_wait_time()
@@ -31,11 +37,11 @@ func _process(delta):
 		RADIUS = (time_left/total_time) * FULL_RADIUS
 #		RADIUS = 0.5 * FULL_RADIUS * (time_left/total_time + 1)
 #		print("Shrinking: " + str(RADIUS))
-		update()
+		update_radius()
 	else:
 		RADIUS = (1-time_left/total_time) * FULL_RADIUS
 #		print("Growing: " + str(RADIUS) + "; is_visible = " + str(is_visible()))
-		update()
+		update_radius()
 
 func _on_AnimationTimer_timeout():
 	emit_signal("done_animating", self)

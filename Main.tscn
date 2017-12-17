@@ -12,14 +12,16 @@
 
 script = ExtResource( 1 )
 Bead = ExtResource( 2 )
-BEAD_VELOCITY = 200.0
+BEAD_VELOCITY = 250.0
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="Ring" parent="." instance=ExtResource( 4 )]
 
-position = Vector2( 0, 0 )
+position = Vector2( 450, 450 )
+angular_velocity = 0.452631
 _sections_unfolded = [ "Angular", "Transform", "Visibility" ]
+MAX_ANGULAR_VELOCITY = 0.652631
 
 [node name="StartTimer" type="Timer" parent="."]
 
@@ -57,9 +59,15 @@ editor/display_folded = true
 
 [node name="TopRight" type="Position2D" parent="Launchers"]
 
+position = Vector2( 900, 0 )
+
 [node name="BottomRight" type="Position2D" parent="Launchers"]
 
+position = Vector2( 900, 900 )
+
 [node name="BottomLeft" type="Position2D" parent="Launchers"]
+
+position = Vector2( 0, 900 )
 
 [node name="Hit1" type="AudioStreamPlayer2D" parent="."]
 

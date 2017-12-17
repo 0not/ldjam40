@@ -24,9 +24,14 @@ func _ready():
 	if typeof(COLOR) == TYPE_NIL:
 		COLOR = COLOR_CHOICES[randi() % COLOR_CHOICES.size()]
 #		COLOR = COLOR_CHOICES[0]
+
+	$Sprite.modulate = COLOR
+
 #	if growing:
 #		RADIUS = floor(FULL_RADIUS/2)
 	RADIUS = FULL_RADIUS
+	
+	
 	
 	make_fake_bead()
 
@@ -53,12 +58,11 @@ func set_hitbox(radius=RADIUS):
 	circle_shape.set_radius(radius)
 	$HitBox.set_shape(circle_shape)
 
-func _draw():
-	if !animating:
-		draw_circle(Vector2(0, 0), RADIUS, COLOR)
+#func _draw():
+#	if !animating:
+#		draw_circle(Vector2(0, 0), RADIUS, COLOR)
 
-# TO DO: Shrinking looks cool, but is causing a problem. Since the beads don't disappear immediately, 
-# they can hit other beads. 
+
 func shrink():
 	shrinking = true
 	animating = true
@@ -89,7 +93,7 @@ func shrink():
 #	call_deferred("set_monitoring", false)
 	
 func _process(delta):
-	pass
+	$Sprite.visible = !animating
 #	if !shrinking and !growing:
 #		contact_monitor = true
 #	if shrinking:

@@ -5,8 +5,6 @@ export (float) var BEAD_VELOCITY
 var screen_size
 var screen_center
 
-
-
 func _ready():
 	screen_size = get_viewport_rect().size
 	screen_center = screen_size * 0.5
